@@ -10,12 +10,12 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-"""Tests for 0.1 models."""
+"""Tests for data tree models."""
 
 import numpy as np
 import numpy.testing as npt
 
-from ibm_quantum_schemas.datatree.version_0_1_dev import DataTreeModel
+from ibm_quantum_schemas.common.datatree import DataTreeModel
 
 
 def test_initialization():

@@ -42,9 +42,11 @@ Classes
    F64TensorModel
    CompressedTensorModel
    F64CompressedTensorModel
+   DataTreeModel
 """
 
 from ibm_quantum_schemas.common.base_params import BaseParamsModel
+from ibm_quantum_schemas.common.datatree import DataTreeModel
 from ibm_quantum_schemas.common.pauli_lindblad_map import PauliLindbladMapModel
 from ibm_quantum_schemas.common.qpy import (
     CompressedQpyDataModel,

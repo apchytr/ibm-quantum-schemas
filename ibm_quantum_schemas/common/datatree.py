@@ -10,7 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-"""Models"""
+"""DataTreeModel"""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from pydantic import BaseModel
 from typing_extensions import TypeAliasType
 
 from ibm_quantum_schemas.aliases import Self
-from ibm_quantum_schemas.common import TensorModel
+from ibm_quantum_schemas.common.tensor import CompressedTensorModel
 
 DataTree: TypeAlias = (
     list["DataTree"] | dict[str, "DataTree"] | NDArray[float] | str | float | int | bool | None
@@ -35,7 +35,14 @@ DataTree: TypeAlias = (
 # TensorModel must come before dict so Pydantic tries it first during deserialization.
 DTModelType = TypeAliasType(
     "DTModelType",
-    list["DTModelType"] | TensorModel | dict[str, "DTModelType"] | str | float | int | bool | None,
+    list["DTModelType"]
+    | CompressedTensorModel
+    | dict[str, "DTModelType"]
+    | str
+    | float
+    | int
+    | bool
+    | None,
 )
 """Model arbitrary nesting of lists and dicts with typed leaves."""
 
@@ -47,13 +54,13 @@ def _datatree_from(data: DataTree) -> DTModelType:
     if isinstance(data, (list, tuple)):  # noqa: UP038
         return [_datatree_from(v) for v in data]
     if isinstance(data, np.ndarray):
-        return TensorModel.from_numpy(data)
+        return CompressedTensorModel.from_numpy(data)
     return data
 
 
 def _datatree_to(data: DTModelType) -> DataTree:
     """Convert a `DTModelType` to a `DataTree`."""
-    if isinstance(data, TensorModel):
+    if isinstance(data, CompressedTensorModel):
         return data.to_numpy()
     if isinstance(data, dict):
         return {k: _datatree_to(v) for k, v in data.items()}
