@@ -1,3 +1,9 @@
+## [0.11rc1](https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11rc1) - 2026-08-10
+
+### Added
+
+- Support for `Tag` in `AnnotationSerializer`. ([#193](https://github.com/Qiskit/ibm-quantum-schemas/pull/193))
+
 ## [0.10.20260723](https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723) - 2026-07-23
 
 ### Changed
