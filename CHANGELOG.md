@@ -1,4 +1,4 @@
-## [0.11.20260819](https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260819) - 2026-08-19
+## [0.11.20260824](https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824) - 2026-08-24
 
 ### Added
 
