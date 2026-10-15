@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field, confloat
+from pydantic import BaseModel, Field, JsonValue, confloat
 
 from ibm_quantum_schemas.common import (
     BaseParamsModel,
@@ -144,6 +144,12 @@ class OptionsModel(BaseModel):
     This is only supported on backends that have ``backend.dynamic_reprate_enabled=True``. It must
     be from the range supplied by ``backend.rep_delay_range``. When this value is ``None``, the
     default value ``backend.default_rep_delay`` is used.
+    """
+
+    experimental: dict[str, JsonValue] = Field(default_factory=dict)
+    """Experimental options.
+
+    These options are not guaranteed to be stable and may change or be removed without notice.
     """
 
 
